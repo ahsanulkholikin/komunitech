@@ -72,7 +72,7 @@
                                         style="max-width: 38px;">
                                 </div>
                                 <div class="mx-1 flex-grow-1">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" placeholder="Buat Postingan">
                                 </div>
                                 <div class="mx-2">
                                     <button type="button" class="btn btn-outline-secondary">

@@ -37,17 +37,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="m-2 fw-semibold fs-5 lh-1">
-                                <a href="#">{{ $item->judul }}</a>
+                            <div class="m-2 fw-semibold fs-5 lh-1" style="transform: rotate(0);">
+                                <a href="#" class="text-reset stretched-link">{{ $item->judul }}</a>
                             </div>
-                            <div class="m-2 lh-sm">
-                                {{ $item->konten }}
+                            <div class="m-2 lh-sm" style="transform: rotate(0);">
+                                <a href="#" class="text-reset stretched-link">{{ $item->konten }}</a>
                             </div>
                             @if ($item->media->isNotEmpty())
-                                <div class="mt-1">
+                                <div class="mt-1" style="transform: rotate(0);">
                                     <div class="image">
                                         <img src="{{ $item->media->pluck('url')->first() }}" class="img img-fluid">
-                                        <div class="image-text">lihat gambar penuh</div>
+                                        <div class="image-text"><a href="#" class="text-reset stretched-link">lihat gambar penuh</a></div>
                                     </div>
                                 </div>
                             @endif
@@ -56,7 +56,7 @@
                                     <div class="mx-2">
                                         <i class="bi bi-chat-left"></i>
                                     </div>
-                                    <div>6969 Komentar</div>
+                                    <div>{{ $item->comment->count('id') }} Komentar</div>
                                     <div class="mx-2">
                                         <i class="bi bi-arrow-90deg-right"></i>
                                     </div>
@@ -69,7 +69,4 @@
             </div>
         </div>
     @endforeach
-    <div wire:loading>
-        Loading...
-    </div>
 </div>

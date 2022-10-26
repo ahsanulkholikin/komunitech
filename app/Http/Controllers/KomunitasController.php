@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Komunitas;
 use Illuminate\Http\Request;
+use App\Models\Komunitas;
+use App\Models\Post;
 
 class KomunitasController extends Controller
 {
@@ -92,6 +93,10 @@ class KomunitasController extends Controller
     public function detail($slug)
     {
         $komunitas = Komunitas::where('slug', $slug)->with('users')->first();
-        return view('komunitas.detail', compact('komunitas'));
+
+        // get post using komunitas id
+        $posts = Post::where('komunitas_id', $komunitas->id)->with('user', 'media', 'vote', 'comment')->get();
+
+        return view('komunitas.detail', compact('komunitas', 'posts'));
     }
 }

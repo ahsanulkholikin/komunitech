@@ -2,6 +2,12 @@
 
 @section('css')
     <style>
+        .small-text {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 18px;
+        }
+
         .image {
             position: relative;
             overflow: hidden;
@@ -144,7 +150,7 @@
                                                         <img src="{{ $item->logo }}" class="rounded-circle"
                                                             style="max-width: 32px;">
                                                     </div>
-                                                    <div class="fw-semibold lh-1">k/{{ $item->slug }}</div>
+                                                    <div class="fw-semibold lh-1 small-text text-wrap">k/{{ $item->slug }}</div>
                                                 </div>
                                             </div>
                                             <div class="me-3">

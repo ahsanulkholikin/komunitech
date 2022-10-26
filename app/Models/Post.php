@@ -42,9 +42,4 @@ class Post extends Model
     {
         return $this->hasMany(PostComment::class);
     }
-
-    public function sumVote()
-    {
-        return $this->vote()->sum('vote');
-    }
 }

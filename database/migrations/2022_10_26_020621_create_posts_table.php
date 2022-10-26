@@ -15,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('komunitas_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('judul');
+            $table->string('slug');
+            $table->longText('konten');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

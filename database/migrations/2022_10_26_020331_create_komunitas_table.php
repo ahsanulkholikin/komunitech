@@ -15,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('komunitas', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->string('slug')->unique();
+            $table->string('deskripsi')->nullable();
+            $table->string('logo')->nullable();
+            $table->string('banner')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

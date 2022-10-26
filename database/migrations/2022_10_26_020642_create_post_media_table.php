@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('post_id')->constrained()->cascadeOnDelete();
             $table->enum('tipe', ['gambar', 'video']);
-            $table->string('lokasi');
+            $table->string('url');
             $table->timestamps();
             $table->softDeletes();
         });

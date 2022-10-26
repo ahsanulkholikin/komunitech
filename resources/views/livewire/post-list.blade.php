@@ -46,7 +46,7 @@
                             @if ($item->media->isNotEmpty())
                                 <div class="mt-1">
                                     <div class="image">
-                                        <img src="{{ $item->media->pluck('lokasi')->first() }}" class="img img-fluid">
+                                        <img src="{{ $item->media->pluck('url')->first() }}" class="img img-fluid">
                                         <div class="image-text">lihat gambar penuh</div>
                                     </div>
                                 </div>

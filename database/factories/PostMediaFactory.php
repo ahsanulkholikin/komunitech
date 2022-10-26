@@ -20,7 +20,7 @@ class PostMediaFactory extends Factory
 
         return [
             'tipe' => 'gambar',
-            'lokasi' => 'https://picsum.photos/1000/1000?random=' . rand(1, 1000),
+            'url' => 'https://picsum.photos/1000/1000?random=' . rand(1, 1000),
             'created_at' => $date,
             'updated_at' => $date,
         ];

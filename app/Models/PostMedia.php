@@ -13,6 +13,6 @@ class PostMedia extends Model
     protected $fillable = [
         'post_id',
         'tipe',
-        'lokasi',
+        'url',
     ];
 }

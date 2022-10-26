@@ -82,4 +82,16 @@ class KomunitasController extends Controller
     {
         //
     }
+
+    public function list()
+    {
+        $komunitas = Komunitas::with('users')->get();
+        return view('komunitas.list', compact('komunitas'));
+    }
+
+    public function detail($slug)
+    {
+        $komunitas = Komunitas::where('slug', $slug)->with('users')->first();
+        return view('komunitas.detail', compact('komunitas'));
+    }
 }

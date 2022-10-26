@@ -144,7 +144,7 @@
                                                         <img src="{{ $item->logo }}" class="rounded-circle"
                                                             style="max-width: 32px;">
                                                     </div>
-                                                    <div class="fw-semibold lh-1">{{ $item->nama }}</div>
+                                                    <div class="fw-semibold lh-1">k/{{ $item->slug }}</div>
                                                 </div>
                                             </div>
                                             <div class="me-3">

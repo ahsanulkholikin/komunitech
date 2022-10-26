@@ -10,7 +10,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="{{ Request::is('komunitas') ? 'nav-link' : 'nav-link collapsed' }}" href="#">
+            <a class="{{ Request::is('k') ? 'nav-link' : 'nav-link collapsed' }}" href="{{ route('k.list') }}">
                 <i class="bi bi-bounding-box"></i>
                 <span>Komunitas</span>
             </a>

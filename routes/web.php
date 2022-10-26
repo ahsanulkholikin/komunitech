@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Komunitas
+Route::get('/k', [App\Http\Controllers\KomunitasController::class, 'list'])->name('k.list');
+Route::get('/k/{slug}', [App\Http\Controllers\KomunitasController::class, 'detail'])->name('k.detail');

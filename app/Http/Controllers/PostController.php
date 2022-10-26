@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Komunitas;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -81,5 +82,14 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+
+    public function detail($k_slug, $id, $p_slug)
+    {
+        $komunitas = Komunitas::where('slug', $k_slug)->first();
+
+        $post = Post::find($id);
+
+        return view('post.detail', compact('komunitas', 'post'));
     }
 }

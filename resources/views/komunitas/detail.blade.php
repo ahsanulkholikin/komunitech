@@ -154,13 +154,7 @@
                                         <div class="d-flex flex-column">
                                             <div class="m-2">
                                                 <div class="d-flex flex-row align-items-center">
-                                                    {{-- <div class="me-2">
-                                                    <img src="{{ $item->komunitas->logo }}" class="rounded-circle"
-                                                        style="max-width: 24px">
-                                                </div> --}}
                                                     <div class="lh-1">
-                                                        {{-- <span><a href="#">k/{{ $item->komunitas->slug }}</a></span>
-                                                    <span>&#8226;</span> --}}
                                                         <span>Diposting oleh</span>
                                                         <span><a href="#">u/{{ $item->user->username }}</a></span>
                                                         <span>{{ $item->created_at->diffForHumans() }}</span>
@@ -168,10 +162,12 @@
                                                 </div>
                                             </div>
                                             <div class="m-2 fw-semibold fs-5 lh-1" style="transform: rotate(0);">
-                                                <a href="#" class="text-reset stretched-link">{{ $item->judul }}</a>
+                                                <a href="{{ route('p.detail', ['k_slug' => $item->komunitas->slug, 'id' => $item->encoded_id, 'p_slug' => $item->slug]) }}"
+                                                    class="text-reset stretched-link">{{ $item->judul }}</a>
                                             </div>
                                             <div class="m-2 lh-sm" style="transform: rotate(0);">
-                                                <a href="#" class="text-reset stretched-link">{{ $item->konten }}</a>
+                                                <a href="{{ route('p.detail', ['k_slug' => $item->komunitas->slug, 'id' => $item->encoded_id, 'p_slug' => $item->slug]) }}"
+                                                    class="text-reset stretched-link">{{ $item->konten }}</a>
                                             </div>
                                             @if ($item->media->isNotEmpty())
                                                 <div class="mt-1" style="transform: rotate(0);">

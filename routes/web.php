@@ -22,5 +22,5 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/k', [App\Http\Controllers\KomunitasController::class, 'list'])->name('k.list');
 Route::get('/k/{k_slug}', [App\Http\Controllers\KomunitasController::class, 'detail'])->name('k.detail');
 
-// Komunitas Detail
-// Route::get('/k/{k_slug}/post/{id}/{p_slug}', [App\Http\Controllers\KomunitasController::class, 'detail'])->name('k.detail');
+// Post
+Route::get('/k/{k_slug}/post/{id}/{p_slug}', [App\Http\Controllers\PostController::class, 'detail'])->name('p.detail');

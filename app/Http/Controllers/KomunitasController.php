@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Komunitas;
 use App\Models\Post;
+use Vinkla\Hashids\Facades\Hashids;
 
 class KomunitasController extends Controller
 {
@@ -95,7 +96,13 @@ class KomunitasController extends Controller
         $komunitas = Komunitas::where('slug', $slug)->with('users')->first();
 
         // get post using komunitas id
-        $posts = Post::where('komunitas_id', $komunitas->id)->with('user', 'media', 'vote', 'comment')->get();
+        $posts = Post::where('komunitas_id', $komunitas->id)->with('komunitas', 'user', 'media', 'vote', 'comment')->get();
+
+        // encode post slug
+        $posts->map(function ($post) {
+            $post->encoded_id = Hashids::encode($post->id);
+            return $post;
+        });
 
         return view('komunitas.detail', compact('komunitas', 'posts'));
     }

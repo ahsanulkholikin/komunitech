@@ -19,7 +19,7 @@ class PostVoteFactory extends Factory
         $date = fake()->dateTimeBetween('-1 week', 'now', 'Asia/Jakarta');
 
         return [
-            'vote' => fake()->randomElement(['-1', '0', '1']),
+            'vote' => fake()->optional(0.3, '1')->randomElement(['-1', '0', '1']),
             'created_at' => $date,
             'updated_at' => $date,
         ];

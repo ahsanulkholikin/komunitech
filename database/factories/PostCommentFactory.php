@@ -16,8 +16,12 @@ class PostCommentFactory extends Factory
      */
     public function definition()
     {
+        $date = fake()->dateTimeBetween('-1 week', 'now', 'Asia/Jakarta');
+
         return [
-            //
+            'komentar' => fake()->paragraph(1),
+            'created_at' => $date,
+            'updated_at' => $date,
         ];
     }
 }

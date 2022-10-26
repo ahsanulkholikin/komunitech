@@ -14,6 +14,12 @@ class PostMediaSeeder extends Seeder
      */
     public function run()
     {
-        //
+        for ($i = 1; $i <= 10; $i++) {
+            if (mt_rand(0, 1)) {
+                \App\Models\PostMedia::factory()->create([
+                    'post_id' => $i,
+                ]);
+            }
+        }
     }
 }

@@ -16,8 +16,11 @@ class KomunitasAdminFactory extends Factory
      */
     public function definition()
     {
+        $date = fake()->dateTimeBetween('-1 week', 'now', 'Asia/Jakarta');
+
         return [
-            //
+            'created_at' => $date,
+            'updated_at' => $date,
         ];
     }
 }

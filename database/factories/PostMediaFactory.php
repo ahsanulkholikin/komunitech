@@ -16,8 +16,13 @@ class PostMediaFactory extends Factory
      */
     public function definition()
     {
+        $date = fake()->dateTimeBetween('-1 week', 'now', 'Asia/Jakarta');
+
         return [
-            //
+            'tipe' => 'gambar',
+            'lokasi' => 'https://picsum.photos/1000/1000?random=' . rand(1, 1000),
+            'created_at' => $date,
+            'updated_at' => $date,
         ];
     }
 }

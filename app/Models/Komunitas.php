@@ -17,4 +17,14 @@ class Komunitas extends Model
         'logo',
         'banner',
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'komunitas_users', 'komunitas_id', 'user_id');
+    }
+
+    public function admins()
+    {
+        return $this->belongsToMany(User::class, 'komunitas_admins', 'komunitas_id', 'user_id');
+    }
 }

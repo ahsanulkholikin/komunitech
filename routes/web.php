@@ -24,3 +24,6 @@ Route::get('/k/{k_slug}', [App\Http\Controllers\KomunitasController::class, 'det
 
 // Post
 Route::get('/k/{k_slug}/post/{id}/{p_slug}', [App\Http\Controllers\PostController::class, 'detail'])->name('p.detail');
+
+// TESTING ONLY
+Route::get('/test', [App\Http\Controllers\TestController::class, 'index'])->name('test');

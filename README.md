@@ -18,7 +18,7 @@ composer install
 ```
 php artisan key:generate
 ```
-5. buat database `komunitas` lalu jalankan migration beserta seedernya
+5. jalankan migration beserta seedernya
 ```
 php artisan migrate --seed
 ```

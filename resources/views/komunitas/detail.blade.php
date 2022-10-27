@@ -170,15 +170,17 @@
                                                     class="text-reset stretched-link">{{ $item->konten }}</a>
                                             </div>
                                             @if ($item->media->isNotEmpty())
-                                                <div class="mt-1" style="transform: rotate(0);">
-                                                    <div class="image">
-                                                        <img src="{{ $item->media->pluck('url')->first() }}"
-                                                            class="img img-fluid">
-                                                        <div class="image-text"><a href="#"
-                                                                class="text-reset stretched-link">lihat gambar penuh</a>
+                                                @if ($item->media->first()->tipe == 'gambar')
+                                                    <div class="mt-1" style="transform: rotate(0);">
+                                                        <div class="image">
+                                                            <img src="{{ $item->media->pluck('url')->first() }}"
+                                                                class="img img-fluid">
+                                                            <div class="image-text"><a href="#"
+                                                                    class="text-reset stretched-link">lihat gambar penuh</a>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                @endif
                                             @endif
                                             <div class="m-1">
                                                 <div class="d-flex flex-row align-items-center">

@@ -2,27 +2,24 @@
 
 ## 💁‍♀️ Tutorial
 
-1. clone repository ini
-```
-git clone https://github.com/luthfeew/komunitech && cd komunitech
-```
-2. duplikat file .env.example menjadi .env
+1. Fork repository ini
+2. Duplikat file .env.example menjadi .env
 ```
 copy .env.example .env
 ```
-3. jalankan composer install
+3. Jalankan composer install
 ```
 composer install
 ```
-4. generate app key
+4. Generate app key
 ```
 php artisan key:generate
 ```
-5. jalankan migration beserta seedernya
+5. Jalankan migration beserta seedernya
 ```
 php artisan migrate --seed
 ```
-6. jalankan app
+6. Jalankan app
 ```
 php artisan serve
 ```

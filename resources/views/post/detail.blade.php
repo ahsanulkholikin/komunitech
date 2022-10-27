@@ -18,7 +18,7 @@
                                                 <i class="bi bi-arrow-up"></i>
                                             </button>
                                         </div>
-                                        <div class="my-1">9999</div>
+                                        <div class="my-1">{{ $post->vote->sum('vote') }}</div>
                                         <div>
                                             <button type="button" class="btn btn-outline-danger"
                                                 style="--bs-btn-padding-y: .1rem; --bs-btn-padding-x: .25rem; --bs-btn-font-size: .75rem;">
@@ -31,49 +31,35 @@
                                     <div class="d-flex flex-column">
                                         <div class="m-2">
                                             <div class="d-flex flex-row align-items-center">
-                                                <div class="me-2">
-                                                    <img src="https://picsum.photos/200" class="rounded-circle"
-                                                        style="max-width: 24px">
-                                                </div>
                                                 <div class="lh-1">
-                                                    <span><a href="#">k/abs</a></span>
-                                                    <span>&#8226;</span>
                                                     <span>Diposting oleh</span>
-                                                    <span><a href="#">u/aaaaaa</a></span>
-                                                    <span>aaaaaaaaa</span>
+                                                    <span><a href="#">u/{{ $post->user->username }}</a></span>
+                                                    <span>{{ $post->created_at->diffForHumans() }}</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="m-2 fw-semibold fs-5 lh-1">
-                                            Menjelang pemilu nanti, apakah menurut kalian sebaiknya subreddit ini distop
-                                            sementara nerima member baru?
+                                            {{ $post->judul }}
                                         </div>
                                         <div class="m-2 lh-sm">
-                                            Melihat post seperti ini dan ini, membuat gw berpikir kedepannya akan lebih
-                                            banyak akun2 yang dibuat sehubungan dengan pemilu nanti, baik akun bot
-                                            maupun bukan. Berkaca dari kejadian2 di Amerika dimana Russia mensponsori
-                                            pembuatan bot untuk propaganda Trump di tahun 2016, hal yang serupa tidak
-                                            begitu mustahil untuk terjadi di Indonesia.
-
-                                            Saran gw untuk sementara distop dulu nerima member baru atau at least
-                                            approval dari momod dulu mungkin sekitar 3-6 bulan sebelum pemilu nanti.
-                                            Kasian juga nanti momod harus nerima report2 yang bejibun. Menurut lu pada
-                                            gmn?
+                                            {{ $post->konten }}
                                         </div>
-                                        {{-- @if ($item->media->isNotEmpty())
-                                            <div class="mt-1" style="transform: rotate(0);">
-                                                <div class="image">
-                                                    <img src="{{ $item->media->pluck('url')->first() }}" class="img img-fluid">
-                                                    <div class="image-text"><a href="#" class="text-reset stretched-link">lihat gambar penuh</a></div>
+                                        @if ($post->media->isNotEmpty())
+                                            @if ($post->media->first()->tipe == 'gambar')
+                                                <div class="mt-1" style="transform: rotate(0);">
+                                                    <div class="image">
+                                                        <img src="{{ $post->media->pluck('url')->first() }}"
+                                                            class="img img-fluid">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        @endif --}}
+                                            @endif
+                                        @endif
                                         <div class="m-1">
                                             <div class="d-flex flex-row align-items-center">
                                                 <div class="mx-2">
                                                     <i class="bi bi-chat-left"></i>
                                                 </div>
-                                                <div>9999 Komentar</div>
+                                                <div>{{ $post->comment->count('id') }} Komentar</div>
                                                 <div class="mx-2">
                                                     <i class="bi bi-arrow-90deg-right"></i>
                                                 </div>
@@ -88,99 +74,42 @@
                                     <div id="editor"></div>
                                 </div>
                                 <div class="ms-auto pt-2">
-                                    <button type="button" class="btn btn-secondary btn-sm rounded-pill">Komentar</button>
+                                    <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill">Komentar</button>
                                 </div>
                             </div>
-                            <div class="pt-3 px-3 d-flex flex-row">
-                                <div>
-                                    <img src="https://picsum.photos/200" class="rounded-circle" style="max-width: 32px">
-                                </div>
-                                <div class="ms-2">
-                                    <div class="d-flex flex-column">
-                                        <div>
-                                            <span class="fw-semibold">u/NAMA</span>
-                                            <span>&#8226;</span>
-                                            <span>5 hari yang lalu</span>
-                                        </div>
-                                        <div class="my-2 lh-sm">
-                                            Daripada gatekeep, gua lebih setuju perketat rules, enforcement dan/atau buat
-                                            megatrit khusus politik. Jadi siapapun yang bahas politik di luar trit atau
-                                            melanggar rules, langsung kasi ban hammer no question asked. Menurut gua, mods
-                                            sub ini terlalu lenient memang.
-                                        </div>
-                                        <div>
-                                            <div class="d-flex flex-row">
-                                                <div>
-                                                    <button type="button" class="btn btn-outline-secondary btn-sm">
-                                                        <i class="bi bi-reply"></i>
-                                                        Balas
-                                                    </button>
+
+                            <!-- FOREACH KOMENTAR -->
+                            @foreach ($komentar as $item)
+                            {{ $item }}
+                                <div class="pt-3 px-3 d-flex flex-row">
+                                    <div>
+                                        <img src="https://picsum.photos/200" class="rounded-circle" style="max-width: 32px">
+                                    </div>
+                                    <div class="ms-2">
+                                        <div class="d-flex flex-column">
+                                            <div>
+                                                <span class="fw-semibold"><a href="#">u/{{ $item->user->username }}</a></span>
+                                                <span>&#8226;</span>
+                                                <span>{{ $item->created_at->diffForHumans() }}</span>
+                                            </div>
+                                            <div class="my-2 lh-sm">
+                                                {{ $item->komentar }}
+                                            </div>
+                                            <div>
+                                                <div class="d-flex flex-row">
+                                                    <div>
+                                                        <button type="button" class="btn btn-outline-secondary btn-sm">
+                                                            <i class="bi bi-reply"></i>
+                                                            Balas
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="pt-3 px-3 d-flex flex-row ms-4">
-                                <div>
-                                    <img src="https://picsum.photos/200" class="rounded-circle" style="max-width: 32px">
-                                </div>
-                                <div class="ms-2">
-                                    <div class="d-flex flex-column">
-                                        <div>
-                                            <span class="fw-semibold">u/NAMA</span>
-                                            <span>&#8226;</span>
-                                            <span>5 hari yang lalu</span>
-                                        </div>
-                                        <div class="my-2 lh-sm">
-                                            Daripada gatekeep, gua lebih setuju perketat rules, enforcement dan/atau buat
-                                            megatrit khusus politik. Jadi siapapun yang bahas politik di luar trit atau
-                                            melanggar rules, langsung kasi ban hammer no question asked. Menurut gua, mods
-                                            sub ini terlalu lenient memang.
-                                        </div>
-                                        <div>
-                                            <div class="d-flex flex-row">
-                                                <div>
-                                                    <button type="button" class="btn btn-outline-secondary btn-sm">
-                                                        <i class="bi bi-reply"></i>
-                                                        Balas
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pt-3 px-3 d-flex flex-row ms-4">
-                                <div>
-                                    <img src="https://picsum.photos/200" class="rounded-circle" style="max-width: 32px">
-                                </div>
-                                <div class="ms-2">
-                                    <div class="d-flex flex-column">
-                                        <div>
-                                            <span class="fw-semibold">u/NAMA</span>
-                                            <span>&#8226;</span>
-                                            <span>5 hari yang lalu</span>
-                                        </div>
-                                        <div class="my-2 lh-sm">
-                                            Daripada gatekeep, gua lebih setuju perketat rules, enforcement dan/atau buat
-                                            megatrit khusus politik. Jadi siapapun yang bahas politik di luar trit atau
-                                            melanggar rules, langsung kasi ban hammer no question asked. Menurut gua, mods
-                                            sub ini terlalu lenient memang.
-                                        </div>
-                                        <div>
-                                            <div class="d-flex flex-row">
-                                                <div>
-                                                    <button type="button" class="btn btn-outline-secondary btn-sm">
-                                                        <i class="bi bi-reply"></i>
-                                                        Balas
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
+                            <!-- END FOREACH KOMENTAR -->
 
                         </div>
                     </div><!-- END POSTINGAN -->
@@ -195,7 +124,16 @@
                                 <div class="p-3 bg-dark text-white fw-semibold">
                                     Tentang Komunitas
                                 </div>
-                                <div class="px-3 pt-3 pb-1 lh-sm">
+                                <div class="d-flex flex-row align-items-center p-3">
+                                    <div class="me-2">
+                                        <img src="{{ $komunitas->logo }}" class="img-fluid rounded-circle"
+                                            style="max-width: 54px;">
+                                    </div>
+                                    <div>
+                                        <a href="#" class="text-reset fw-semibold">k/{{ $komunitas->slug }}</a>
+                                    </div>
+                                </div>
+                                <div class="px-3 pb-1 lh-sm">
                                     {{ $komunitas->deskripsi }}
                                 </div>
                                 <div class="px-3">

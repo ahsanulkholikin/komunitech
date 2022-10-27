@@ -4,7 +4,7 @@
 
 1. clone repository ini
 ```
-git clone https://github.com/luthfeew/komunitas && cd komunitas
+git clone https://github.com/luthfeew/komunitech && cd komunitech
 ```
 2. duplikat file .env.example menjadi .env
 ```
